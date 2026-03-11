@@ -6,6 +6,7 @@ import {
   StyleSheet,
   RefreshControl,
   ActivityIndicator,
+  Pressable,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { usePuckStore } from '@/stores/puck.store';
@@ -84,6 +85,12 @@ export default function HomeScreen() {
           </View>
         }
       />
+      <Pressable
+        style={styles.fab}
+        onPress={() => router.push('/puck/add')}
+      >
+        <Text style={styles.fabText}>+</Text>
+      </Pressable>
     </View>
   );
 }
@@ -125,5 +132,27 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#4a90d9',
     fontWeight: '600',
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: '#4a90d9',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+  fabText: {
+    fontSize: 28,
+    color: '#fff',
+    fontWeight: '300',
+    marginTop: -2,
   },
 });
