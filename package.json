@@ -1,0 +1,15 @@
+{
+  "name": "awake-app",
+  "private": true,
+  "packageManager": "pnpm@10.32.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["bcrypt", "esbuild"]
+  },
+  "scripts": {
+    "dev:api": "pnpm --filter @awake/api dev",
+    "dev:mobile": "pnpm --filter @awake/mobile start",
+    "build:api": "pnpm --filter @awake/api build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

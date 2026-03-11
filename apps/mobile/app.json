@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Awake",
+    "slug": "awake-app",
+    "version": "1.0.0",
+    "scheme": "awake",
+    "platforms": ["ios", "android"],
+    "newArchEnabled": true,
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
