@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@awake/shared": "workspace:*",
+    "@react-native-community/datetimepicker": "^8.6.0",
     "expo": "~52.0.0",
     "expo-router": "~4.0.0",
     "expo-secure-store": "^55.0.8",
