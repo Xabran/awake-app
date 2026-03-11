@@ -3,6 +3,7 @@ import { Stack, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { useAuthStore } from '../src/stores/auth.store';
+import { ErrorBoundary } from '../src/components/ErrorBoundary';
 
 function useProtectedRoute() {
   const { isAuthenticated, isLoading } = useAuthStore();
@@ -40,13 +41,14 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <StatusBar style="auto" />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="puck" />
       </Stack>
-    </>
+    </ErrorBoundary>
   );
 }
 

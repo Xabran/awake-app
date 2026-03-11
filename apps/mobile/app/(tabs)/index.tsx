@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
   Pressable,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { usePuckStore } from '@/stores/puck.store';
 import { PuckCard } from '@/components/PuckCard';
 
@@ -17,9 +17,11 @@ export default function HomeScreen() {
     usePuckStore();
   const router = useRouter();
 
-  useEffect(() => {
-    fetchPucks();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchPucks();
+    }, [fetchPucks])
+  );
 
   const handlePuckPress = useCallback(
     (puckId: string) => {

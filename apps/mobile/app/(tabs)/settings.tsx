@@ -1,50 +1,102 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useAuthStore } from '../../src/stores/auth.store';
+import { View, Text, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
+import { useAuthStore } from '@/stores/auth.store';
 
 export default function SettingsScreen() {
   const { user, logout } = useAuthStore();
 
+  function handleLogout() {
+    Alert.alert('Log Out', 'Are you sure you want to log out?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Log Out',
+        style: 'destructive',
+        onPress: logout,
+      },
+    ]);
+  }
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.section}>
-        <Text style={styles.label}>Email</Text>
-        <Text style={styles.value}>{user?.email ?? '—'}</Text>
+        <Text style={styles.sectionTitle}>Account</Text>
+        <View style={styles.card}>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>Email</Text>
+            <Text style={styles.rowValue}>{user?.email ?? '—'}</Text>
+          </View>
+        </View>
       </View>
 
-      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>About</Text>
+        <View style={styles.card}>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>Version</Text>
+            <Text style={styles.rowValue}>0.0.1</Text>
+          </View>
+          <View style={styles.separator} />
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>App</Text>
+            <Text style={styles.rowValue}>Awake</Text>
+          </View>
+        </View>
+      </View>
+
+      <Pressable style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutText}>Log Out</Text>
-      </TouchableOpacity>
-    </View>
+      </Pressable>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 24,
+    backgroundColor: '#f5f5f5',
+  },
+  content: {
+    padding: 16,
+    gap: 24,
+    paddingBottom: 40,
   },
   section: {
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    gap: 10,
   },
-  label: {
+  sectionTitle: {
     fontSize: 13,
-    color: '#999',
-    marginBottom: 4,
+    fontWeight: '600',
+    color: '#888',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
-  value: {
-    fontSize: 16,
-    color: '#1a1a1a',
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 14,
+  },
+  rowLabel: {
+    fontSize: 15,
+    color: '#333',
+  },
+  rowValue: {
+    fontSize: 15,
+    color: '#666',
+  },
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#eee',
+    marginHorizontal: 14,
   },
   logoutButton: {
-    marginTop: 32,
     backgroundColor: '#fee2e2',
-    borderRadius: 8,
-    padding: 16,
+    borderRadius: 12,
+    paddingVertical: 14,
     alignItems: 'center',
   },
   logoutText: {
