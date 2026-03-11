@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Awake</Text>
-      <Text style={styles.subtitle}>Your pucks will appear here</Text>
+      <Text style={styles.title}>Your Pucks</Text>
+      <Text style={styles.subtitle}>No pucks paired yet</Text>
     </View>
   );
 }
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 8,
   },
